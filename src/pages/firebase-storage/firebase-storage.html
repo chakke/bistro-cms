@@ -1,0 +1,73 @@
+<ion-header>
+
+    <ion-toolbar color="primary">
+        <ion-buttons start left (click)="onClickBack()">
+            <button ion-button icon-only><ion-icon name="home"></ion-icon></button>
+        </ion-buttons>
+        <ion-title>Firebase Storage</ion-title>
+    </ion-toolbar>
+
+</ion-header>
+
+
+<ion-content>
+    <div class="folder-container">
+        <div padding class="folder-bar">
+            <ion-icon name="folder-open" (click)="onClickFolderBar('')">
+            </ion-icon>
+            <div class="item-folder" *ngFor="let item of mFolderItems" (click)="onClickFolderBar(item)">
+                {{item}} /
+            </div>
+
+            <div id="btn-upload">
+                <button ion-button icon-only clear (click)="onClickNewFolder()">
+                      <ion-icon name="add"></ion-icon>
+                  </button>
+                <button ion-button icon-only clear style="position:relative">
+                      <ion-icon name="cloud-upload"></ion-icon>                    
+                      <input id="inputfile" type="file" class="input-file" multiple (change)="onFilesChanged($event)">                    
+                  </button>
+
+                <button ion-button icon-only clear (click)="onClickSwitchViewType()">
+                          <ion-icon name="image"></ion-icon>
+                  </button>
+            </div>
+        </div>
+        <div class="folder-content-container">
+            <ion-list *ngIf="mViewType==VIEW_LIST">
+                <ion-item *ngFor="let category of mFolder" (click)="onClickOpenFolder(category)" class="folder" (contextmenu)="onRightClickFolder(category,$event)">
+                    <div style="display:flex; align-items:center">
+                        <ion-icon class="color-folder" name="folder" style="font-size: 2em; padding-right:10px"></ion-icon> {{category.name}}</div>
+                </ion-item>
+                <ion-item *ngFor="let uploadedFile of mFiles" (contextmenu)="onRightClickFile(uploadedFile,$event)" (tap)="onDoubleClickFile(uploadedFile,$event)" [class.selected-file]="uploadedFile.id==mSelectedFile.id">
+                    {{uploadedFile.name}}
+                </ion-item>
+            </ion-list>
+            <ion-grid *ngIf="mViewType==VIEW_TILES">
+                <ion-row>
+                    <ion-col col-4 col-md-2 col-lg-1 *ngFor="let category of mFolder" (click)="onClickOpenFolder(category)" class="folder" (contextmenu)="onRightClickFolder(category,$event)">
+                        <div style="width:100%">
+                            <div class="col-preview">
+                                <ion-icon class="color-folder" name="folder"></ion-icon>
+                            </div>
+                            <div class="col-name">{{category.name}}</div>
+                        </div>
+                    </ion-col>
+
+                </ion-row>
+
+                <ion-row>
+                    <ion-col col-4 col-md-2 col-lg-1 *ngFor="let uploadedFile of mFiles" (contextmenu)="onRightClickFile(uploadedFile,$event)" (tap)="onDoubleClickFile(uploadedFile,$event)">
+                        <div style="width:100%">
+                            <div class="col-preview">
+                                <img [src]="uploadedFile.url" *ngIf="uploadedFile.is_image">
+                                <ion-icon name="link" *ngIf="!uploadedFile.is_image" class="icon-no-preview"></ion-icon>
+                            </div>
+                            <div class="col-name">{{uploadedFile.name}}</div>
+                        </div>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </div>
+    </div>
+</ion-content>

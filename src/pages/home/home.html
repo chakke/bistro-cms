@@ -1,14 +1,17 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-navbar>
+
+    <ion-navbar color="primary">
+        <ion-title>Firebase Connect</ion-title>
+    </ion-navbar>
+
 </ion-header>
 
+
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+    <h1>Danh mục chức năng</h1>
+    <ion-list>
+        <ion-item *ngFor="let item of items; let i = index" (click)="onClickItem(item)">
+            {{i+1}}. {{item.name}}
+        </ion-item>
+    </ion-list>
 </ion-content>
