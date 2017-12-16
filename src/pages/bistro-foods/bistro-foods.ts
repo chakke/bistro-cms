@@ -4,57 +4,7 @@ import { AngularFirestoreCollection, AngularFirestore } from 'angularfire2/fires
 import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
 import * as firebase from 'firebase';
-
-interface FoodSale {
-  id: string;
-  name: string;
-  percent: number;
-  state: number;
-}
-
-interface FoodOption {
-  id: string;
-  name: string;
-  description: string;
-  state: number;
-  type: number;
-  price: number;
-}
-
-interface Food {
-  id: string;
-  /**Tiền tệ */
-  currency: string;
-  /**Tên tiếng việt */
-  name: string;
-  /**Tên tiếng anh */
-  en_name: string;
-  /**Mô tả */
-  description: string;
-  /**Hình ảnh minh họa */
-  image: string;
-  /**Giá sản phẩm */
-  price: number;
-  /**Những option bổ sung cho sản phẩm này */
-  options: Array<FoodOption>;
-  /**Những chương trình sale áp dụng cho sản phẩm này */
-  sales: Array<FoodSale>;
-  /**Hình ảnh của món ăn - chứa id liên kết đến album đó. */
-  album_id: string;
-  /** Bài viết về sản phẩm này */
-  paper: string;
-  /**Kích thước */
-  size: string;
-  /**Đơn vị sử dụng : Bát, Suất, Đĩa, ... */
-  unit: string;
-  /**Trạng thái nào : sẵn sàng phục vụ, hết hàng, ngừng kinh doanh */
-  state: number;
-  /**Nhóm nào : đồ ăn, thức uống, khác ... */
-  type: number;
-  /**Loại nào : cafe, matcha, trà sữa, ăn sáng , ... */
-  category: number;
-
-}
+import { Food } from '../../providers/bistro/classes/food';
 
 
 @IonicPage()
@@ -73,8 +23,16 @@ export class BistroFoodsPage {
   }
 
   ionViewDidEnter() {
-    this._ConnectToFirebase();
-    // this._UploadFoodsData();
+    console.log("Enter view Bistro Food");
+
+    //this._ConnectToFirebase();
+    // this._UploadTypes();
+    // this._UploadCategories();
+    this._UploadUnits();
+    this._UploadSizes();
+
+    //this._UploadFoods();
+
   }
 
   onClickFood(food: Food) {
@@ -99,7 +57,6 @@ export class BistroFoodsPage {
   _ConnectToFirebase() {
     this.foodsRef = this.mAngularFirestore.collection("products/bistro/foods");
     this.foods = this.foodsRef.valueChanges();
-
     this.foodsRef.snapshotChanges().subscribe(
       snapshot => {
         this.mFoodDatas = [];
@@ -111,42 +68,7 @@ export class BistroFoodsPage {
       }
     );
   }
-  getFoodFromData(foodData: any): Food {
-    let food: Food = {
-      id: "",
-      album_id: "",
-      category: -1,
-      currency: "",
-      description: "",
-      en_name: "",
-      image: "",
-      name: "",
-      options: [],
-      paper: "",
-      price: 0,
-      sales: [],
-      size: "",
-      state: -1,
-      type: -1,
-      unit: "",
-    };
 
-
-    if (foodData) {
-      food.id = foodData.id;
-      food.category = foodData.category;
-      food.image = foodData.img;
-      food.name = foodData.vie;
-      food.en_name = foodData.en;
-      food.price = foodData.price;
-      food.currency = foodData.currency;
-      if (food.category == 0) food.type = 0;
-      else if (food.category == 18) food.type = 2;
-      else food.type = 1;
-    }
-
-    return food;
-  }
   getFoodFromFirebaseData(foodData: any): Food {
     let food: Food = {
       id: foodData.id,
@@ -166,23 +88,78 @@ export class BistroFoodsPage {
       type: foodData.type,
       unit: foodData.unit
     };
+    food.firebase_id = food.id;
 
     return food;
   }
-  _UploadFoodsData() {
 
-    this.mAngularHttpClient.get('./assets/data/foods.json').subscribe(data => {
+  _UploadUnits() {
+    this.mAngularHttpClient.get('./assets/data/food_units.json').subscribe(data => {
+      let unitsRef = this.mAngularFirestore.collection("products/bistro/food_units");
+      let units = data["units"];
+      for (var dataKey in units) {
+        let unit = units[dataKey];
+        if (unit) {
+          unit.firebase_id = unit.id;
+          unitsRef.doc(unit.id).set(unit);
+        }
+      }
+    });
+  }
+  _UploadSizes() {
+    this.mAngularHttpClient.get('./assets/data/food_sizes.json').subscribe(data => {
+      let sizesRef = this.mAngularFirestore.collection("products/bistro/food_sizes");
+      let sizes = data["sizes"];
+      for (var dataKey in sizes) {
+        let size = sizes[dataKey];
+        if (size) {
+          size.firebase_id = size.id;
+          sizesRef.doc(size.id).set(size);
+        }
+      }
+    });
+  }
+
+  _UploadTypes() {
+    this.mAngularHttpClient.get('./assets/data/food_types.json').subscribe(data => {
+      let typesRef = this.mAngularFirestore.collection("products/bistro/food_types");
+      let types = data["types"];
+      for (var dataKey in types) {
+        let type = types[dataKey];
+        if (type) {
+          type.firebase_id = type.id;
+          typesRef.doc(type.id).set(type);
+        }
+      }
+    });
+  }
+  _UploadCategories() {
+    this.mAngularHttpClient.get('./assets/data/food_categories.json').subscribe(data => {
+      let categoriesRef = this.mAngularFirestore.collection("products/bistro/food_categories");
+      let categories = data["categories"];
+      for (var dataKey in categories) {
+        let category = categories[dataKey];
+        if (category) {
+          category.firebase_id = category.id;
+          categoriesRef.doc(category.id).set(category);
+        }
+      }
+    });
+  }
+
+  _UploadFoods() {
+    this.mAngularHttpClient.get('./assets/data/bistro_foods.json').subscribe(data => {
       let foodsRef = this.mAngularFirestore.collection("products/bistro/foods");
       let foods = data["foods"];
       for (var foodDataKey in foods) {
-        let foodData = foods[foodDataKey];
-        let food = this.getFoodFromData(foodData);
+        let food = foods[foodDataKey];
+        food.firebase_id = food.id;
+
         if (food.image.length > 0) {
-          firebase.storage().ref('uploads/images/foods/' + foodData['img']).getDownloadURL().then(
+          firebase.storage().ref('uploads/images/foods/' + food.image).getDownloadURL().then(
             url => {
               food.image = url;
-              console.log(url);
-              foodsRef.doc("" + food.id).set(food);
+              foodsRef.doc(food.id).set(food);
             }
           );
         } else {
@@ -220,7 +197,7 @@ export class BistroFoodsPage {
     strSearch = this._BodauTiengViet(strSearch);
     this.mFoods = this.mFoodDatas.filter(item => {
       return this._SeachMatch(item, strSearch);
-    });    
+    });
   }
 
   onClickAddFood() {

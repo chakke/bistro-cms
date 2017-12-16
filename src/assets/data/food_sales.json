@@ -1,0 +1,6 @@
+{
+    "sales": [
+        { "id": "00", "name": "default", "percent": 0, "state": 1 }
+    ]
+
+}

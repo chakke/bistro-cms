@@ -1,0 +1,98 @@
+{
+    "categories": [{
+            "id": "01",
+            "name": "Món ăn",
+            "en_name": "Food"
+        },
+        {
+            "id": "02",
+            "name": "Cà phê truyền thống",
+            "en_name": "Original Coffee"
+        },
+        {
+            "id": "03",
+            "name": "Cà phê ý và Dancercino",
+            "en_name": "Italia coffee & Dancercino"
+        },
+        {
+            "id": "04",
+            "name": "Đồ đá xay",
+            "en_name": "Ice-blen_nameded"
+        },
+        {
+            "id": "05",
+            "name": "Mocha",
+            "en_name": "Mocha"
+        },
+        {
+            "id": "06",
+            "name": "Matcha",
+            "en_name": "Matcha"
+        },
+        {
+            "id": "07",
+            "name": "Smoothies",
+            "en_name": "Smoothies"
+        },
+        {
+            "id": "08",
+            "name": "Mojito/Soda",
+            "en_name": "Mojito/Soda"
+        },
+        {
+            "id": "09",
+            "name": "Sinh tố",
+            "en_name": "Smoothie"
+        },
+        {
+            "id": "10",
+            "name": "Nước ép & nước ép tổng hợp",
+            "en_name": "Juice & Mixed Juice"
+        },
+        {
+            "id": "11",
+            "name": "Sữa (nóng/đá)",
+            "en_name": "Milk (Hot/Ice)"
+        },
+        {
+            "id": "12",
+            "name": "Sữa chua",
+            "en_name": "Yugurt"
+        },
+        {
+            "id": "13",
+            "name": "Trái cây (Sữa chua/sữa đặc)",
+            "en_name": "Fruit (Yogurt/Conden_namesed Milk)"
+        },
+        {
+            "id": "14",
+            "name": "Bánh ngọt",
+            "en_name": "Cake"
+        },
+        {
+            "id": "15",
+            "name": "Trà (Nóng/Lạnh)",
+            "en_name": "Tea (Hot/Ice)"
+        },
+        {
+            "id": "16",
+            "name": "Đồ uống khác",
+            "en_name": "Other Drink"
+        },
+        {
+            "id": "17",
+            "name": "Đồ ăn kèm",
+            "en_name": "Snacks"
+        },
+        {
+            "id": "18",
+            "name": "Thuốc lá",
+            "en_name": "Cigarette"
+        },
+        {
+            "id": "19",
+            "name": "Kem",
+            "en_name": "Ice cream"
+        }
+    ]
+}

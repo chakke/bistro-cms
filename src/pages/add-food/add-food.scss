@@ -7,4 +7,16 @@ page-add-food {
         min-height: 100vh;
         margin: 16px;
     }
+    .image-container {
+        display: inline-block;
+        position: relative;
+        max-width: 100px;
+        img {
+            width: 100%;
+            padding: 10px;
+        }
+        .close_button {
+            color: red;
+        }
+    }
 }

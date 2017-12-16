@@ -28,16 +28,16 @@
             <div class="folder-bar-buttons">
 
                 <button ion-button icon-only clear (click)="onClickNewFolder()">
-                      <ion-icon name="add"></ion-icon>
-                  </button>
+                    <ion-icon name="add"></ion-icon>
+                </button>
                 <button ion-button icon-only clear style="position:relative">
-                      <ion-icon name="cloud-upload"></ion-icon>                    
-                      <input id="inputfile" type="file" class="input-file" multiple (change)="onFilesChanged($event)">                    
-                  </button>
+                    <ion-icon name="cloud-upload"></ion-icon>                    
+                    <input id="inputfile" type="file" class="input-file" multiple (change)="onFilesChanged($event)">                    
+                </button>
 
                 <button ion-button icon-only clear (click)="onClickSwitchViewType()">
-                      <ion-icon name="image"></ion-icon>
-                  </button>
+                    <ion-icon name="image"></ion-icon>
+                </button>
 
             </div>
         </div>
@@ -55,8 +55,8 @@
                 <ion-item *ngFor="let fileUploading of filesToUpload">
                     {{fileUploading.name}}
                     <span items-end>
-                          {{fileUploading.progress}} %
-                      </span>
+                        {{fileUploading.progress}} %
+                    </span>
                 </ion-item>
             </ion-list>
             <ion-grid *ngIf="mViewType==VIEW_TILES">

@@ -1,0 +1,12 @@
+{
+    "staffs": [
+        { "id": "chef1", "username": "chef1", "password": "", "name": "Bếp trưởng", "avatar": "", "account_state": 0, "birthday": "", "identify": "", "phone": "", "email": "", "staff_type": 1, "staff_role": 0 },
+        { "id": "chef2", "username": "chef2", "password": "", "name": "Đầu bếp", "avatar": "", "account_state": 0, "birthday": "", "identify": "", "phone": "", "email": "", "staff_type": 1, "staff_role": 0 },
+        { "id": "bar1", "username": "bar1", "password": "", "name": "Pha chế 1", "avatar": "", "account_state": 0, "birthday": "", "identify": "", "phone": "", "email": "", "staff_type": 1, "staff_role": 1 },
+        { "id": "bar2", "username": "bar2", "password": "", "name": "Pha chế 2", "avatar": "", "account_state": 0, "birthday": "", "identify": "", "phone": "", "email": "", "staff_type": 1, "staff_role": 1 },
+        { "id": "chayban1", "username": "chayban1", "password": "", "name": "Chạy bàn 1", "avatar": "", "account_state": 0, "birthday": "", "identify": "", "phone": "", "email": "", "staff_type": 1, "staff_role": 2 },
+        { "id": "chayban2", "username": "chayban2", "password": "", "name": "Chạy bàn 2", "avatar": "", "account_state": 0, "birthday": "", "identify": "", "phone": "", "email": "", "staff_type": 1, "staff_role": 2 },
+        { "id": "order1", "username": "order1", "password": "", "name": "Ghi Order 1", "avatar": "", "account_state": 0, "birthday": "", "identify": "", "phone": "", "email": "", "staff_type": 1, "staff_role": 3 },
+        { "id": "order2", "username": "order2", "password": "", "name": "Ghi Order 2", "avatar": "", "account_state": 0, "birthday": "", "identify": "", "phone": "", "email": "", "staff_type": 1, "staff_role": 3 }
+    ]
+}

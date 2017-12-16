@@ -15,8 +15,12 @@ interface ItemPage {
 export class HomePage {
   items: Array<ItemPage> = [
     { name: "Firebase Storage", page: "FirebaseStoragePage" },
-    { name: "Update Viet Nam Province", page: "VietnamProvincePage" },
+    // { name: "Update Viet Nam Province", page: "VietnamProvincePage" },
+    { name: "Bistro Restaurants", page: "BistroRestaurantsPage" },
+    { name: "Bistro Staffs", page: "BistroStaffsPage" },
+    { name: "Bistro Tables", page: "BistroTablesPage" },
     { name: "Bistro Foods", page: "BistroFoodsPage" },
+    
   ];
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }

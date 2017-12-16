@@ -1,0 +1,20 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-buttons start left (click)="onClickBack()">
+            <button ion-button icon-only><ion-icon name="home"></ion-icon></button>
+        </ion-buttons>
+        <ion-title>Bistro Staffs</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <ion-list>
+        <ion-item *ngFor="let staff of mStaffs | async; let i = index">
+            <ion-avatar item-start>
+                <img [src]="staff.avatar">
+            </ion-avatar>
+            <h2>{{staff.name}}</h2>
+        </ion-item>
+    </ion-list>
+</ion-content>

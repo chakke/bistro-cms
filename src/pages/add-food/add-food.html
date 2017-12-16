@@ -19,71 +19,133 @@
 
 
 <ion-content>
+    <div>
+        <ion-segment [(ngModel)]="mViewType">
+            <ion-segment-button value="kittens">
+                Thông tin cơ bản
+            </ion-segment-button>
+            <ion-segment-button value="puppies">
+                Hình Ảnh
+            </ion-segment-button>
+        </ion-segment>
+    </div>
+
     <div class="content-container">
+
         <ion-grid>
             <ion-row>
-                <ion-item>
-                    <ion-label stacked>ID</ion-label>
-                    <ion-input></ion-input>
-                </ion-item>
-                <ion-item>
-                    <ion-label stacked>Tên món</ion-label>
-                    <ion-input></ion-input>
-                </ion-item>
-                <ion-item>
-                    <ion-label stacked>Mô tả</ion-label>
-                    <ion-textarea></ion-textarea>
+                <ion-col col-12 col-md-6>
+                    <ion-item>
+                        <ion-label stacked>ID</ion-label>
+                        <ion-input type="text" [(ngModel)]="food.id"></ion-input>
+                    </ion-item>
+                </ion-col>
+                <ion-col col-12 col-md-6>
+                    <ion-item>
+                        <ion-label stacked>Tên món</ion-label>
+                        <ion-input type="text" [(ngModel)]="food.name"></ion-input>
+                    </ion-item>
+                </ion-col>
+                <ion-col col-12 col-md-6>
+                    <ion-item>
+                        <ion-label stacked>Tên tiếng anh</ion-label>
+                        <ion-input type="text" [(ngModel)]="food.en_name"></ion-input>
+                    </ion-item>
+                </ion-col>
+                <ion-col col-12 col-md-6>
+                    <ion-item>
+                        <ion-label stacked>Mô tả</ion-label>
+                        <ion-textarea type="text" [(ngModel)]="food.description"></ion-textarea>
+                    </ion-item>
+                </ion-col>
+                <ion-col col-12 col-md-6>
+                    <ion-item>
+                        <ion-label stacked>Kích thước</ion-label>
+                        <ion-select [(ngModel)]="food.size">
+                            <ion-option value="small">Nhỏ</ion-option>
+                            <ion-option value="medium">Vừa</ion-option>
+                            <ion-option value="big">Lớn</ion-option>
+                        </ion-select>
+                    </ion-item>
+                </ion-col>
+                <ion-col col-12 col-md-6>
+                    <ion-item>
+                        <ion-label stacked>Đơn vị sử dụng</ion-label>
+                        <ion-select [(ngModel)]="food.unit">
+                            <ion-option value="1">Suất</ion-option>
+                            <ion-option value="2">Đĩa</ion-option>
+                            <ion-option value="3">Cốc</ion-option>
+                            <ion-option value="4">Bát</ion-option>
+                            <ion-option value="5">Tô</ion-option>
+                            <ion-option value="6">Ly</ion-option>
+                        </ion-select>
+                    </ion-item>
+                </ion-col>
+                <ion-col col-12 col-md-6>
+                    <ion-item>
+                        <ion-label stacked>Giá</ion-label>
+                        <ion-input type="number" [(ngModel)]="food.price"></ion-input>
+                    </ion-item>
+                </ion-col>
+                <ion-col col-12 col-md-6>
+                    <ion-item>
+                        <ion-label stacked>Tiền tệ</ion-label>
+                        <ion-select type="text" [(ngModel)]="food.currency">
+                            <ion-option value="1">VND</ion-option>
+                            <ion-option value="2">USD</ion-option>
+                        </ion-select>
+                    </ion-item>
+                </ion-col>
+                <ion-col col-12 col-md-6>
+                    <ion-item>
+                        <ion-label stacked>Loại món</ion-label>
+                        <ion-select [(ngModel)]="food.type">
+                            <ion-option value="1">Đồ ăn</ion-option>
+                            <ion-option value="2">Thức uống</ion-option>
+                            <ion-option value="3">Khác</ion-option>
+                        </ion-select>
+                    </ion-item>
+                </ion-col>
+                <ion-col col-12 col-md-6>
+                    <ion-item>
+                        <ion-label stacked>Danh mục</ion-label>
+                        <ion-select [(ngModel)]="food.category">
+                            <ion-option value="1">Ăn sáng</ion-option>
+                            <ion-option value="2">Cafe</ion-option>
+                            <ion-option value="3">Trà sữa</ion-option>
+                            <ion-option value="4">Match</ion-option>
+                            <ion-option value="5">Bia</ion-option>
+                            <ion-option value="6">Thuốc lá</ion-option>
+                        </ion-select>
+                    </ion-item>
+                </ion-col>
+                <ion-col col-12 col-md-6>
+                    <ion-item>
+                        <ion-label stacked>Ảnh xem trước</ion-label>
+                        <button ion-button item-right clear (click)="onClickPickImage()"> 
+                      <ion-icon name="image"></ion-icon>
+                    </button>
+                    </ion-item>
+                </ion-col>
+                <ion-item *ngIf="food.image.length>0">
+                    <img [src]="food.image">
                 </ion-item>
 
                 <ion-item>
-                    <ion-label stacked>Kích thước</ion-label>
-                    <ion-select>
-                        <ion-option value="1">Nhỏ</ion-option>
-                        <ion-option value="2">Vừa</ion-option>
-                        <ion-option value="3">Lớn</ion-option>
-                    </ion-select>
+                    <ion-label stacked>Hình ảnh</ion-label>
+                    <button ion-button item-right clear (click)="onClickPickImages()"> 
+                      <ion-icon name="images" ></ion-icon>
+                    </button>
                 </ion-item>
-                <ion-item>
-                    <ion-label stacked>Đơn vị sử dụng</ion-label>
-                    <ion-select>
-                        <ion-option value="1">Suất</ion-option>
-                        <ion-option value="2">Đĩa</ion-option>
-                        <ion-option value="3">Cốc</ion-option>
-                        <ion-option value="4">Bát</ion-option>
-                        <ion-option value="5">Tô</ion-option>
-                        <ion-option value="6">Ly</ion-option>
-                    </ion-select>
-                </ion-item>
-
-                <ion-item>
-                    <ion-label stacked>Giá</ion-label>
-                    <ion-input type="number"></ion-input>
-                </ion-item>
-                <ion-item>
-                    <ion-label stacked>Tiền tệ</ion-label>
-                    <ion-select>
-                        <ion-option value="1">VND</ion-option>
-                        <ion-option value="2">USD</ion-option>
-                    </ion-select>
-                </ion-item>
-                <ion-item>
-                    <ion-label stacked>Loại món</ion-label>
-                    <ion-select>
-                        <ion-option value="1">Đồ ăn</ion-option>
-                        <ion-option value="2">Thức uống</ion-option>
-                        <ion-option value="3">Khác</ion-option>
-                    </ion-select>
-                </ion-item>
-                <ion-item>
-                    <ion-label stacked>Danh mục</ion-label>
-                    <ion-select>
-                        <ion-option value="1">Ăn sáng</ion-option>
-                        <ion-option value="2">Cafe</ion-option>
-                        <ion-option value="3">Trà sữa</ion-option>
-                        <ion-option value="4">Match</ion-option>
-                        <ion-option value="5">Bia</ion-option>
-                        <ion-option value="6">Thuốc lá</ion-option>
-                    </ion-select>
+                <ion-item *ngIf="images.length>0">
+                    <div *ngFor="let image of images" class="image-container">
+                        <img [src]="image.url">
+                        <div text-center>
+                            <button ion-button icon-only clear class="close_button" (click)="onClickRemoveImage(image)">
+                                <ion-icon name="ios-close-circle-outline"></ion-icon>
+                            </button>
+                        </div>
+                    </div>
                 </ion-item>
             </ion-row>
 

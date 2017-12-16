@@ -1,0 +1,8 @@
+{
+    "options": [
+        { "id": "00", "name": "Thêm rau", "price": 15000, "state": 1 },
+        { "id": "01", "name": "Thêm bún", "price": 15000, "state": 1 },
+        { "id": "02", "name": "Thêm mỳ", "price": 15000, "state": 1 }
+    ]
+
+}

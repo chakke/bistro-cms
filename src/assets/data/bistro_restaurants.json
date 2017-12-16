@@ -1,0 +1,5 @@
+{
+    "restaurants": [
+        { "id": "bistro", "name": "Bistro Dancer", "logo": "", "vendor_id": "", "vendor_name": "", "vendor_logo": "", "state": 1, "time_open": "06:00", "time_close": "22:00", "hotline": "0942670824", "address": "Phan Đình Phùng, Thành phố Thái Nguyên, Thái Nguyên", "geopoint": { "latitude": 21.5918398, "longitude": 105.8387396 } }
+    ]
+}

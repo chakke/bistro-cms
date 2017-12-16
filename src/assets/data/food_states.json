@@ -1,0 +1,19 @@
+{
+    "states": [{
+            "id": "00",
+            "name": "Chưa kinh doanh"
+        },
+        {
+            "id": "01",
+            "name": "Sẵn sàng phục vụ"
+        },
+        {
+            "id": "02",
+            "name": "Hết hàng"
+        },
+        {
+            "id": "03",
+            "name": "Ngừng kinh doanh"
+        }
+    ]
+}

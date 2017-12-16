@@ -1,0 +1,18 @@
+{
+    "types": [{
+            "id": "01",
+            "name": "Đồ ăn",
+            "en_name": "Food"
+        },
+        {
+            "id": "02",
+            "name": "Thức uống",
+            "en_name": "Drink"
+        },
+        {
+            "id": "03",
+            "name": "Khác",
+            "en_name": "Other"
+        }
+    ]
+}

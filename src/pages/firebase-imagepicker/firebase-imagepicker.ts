@@ -27,12 +27,14 @@ class FirebaseFilePicker extends FirebaseFile {
   }
 }
 
+
+
 @IonicPage()
 @Component({
-  selector: 'page-firebase-storage',
-  templateUrl: 'firebase-storage.html',
+  selector: 'page-firebase-imagepicker',
+  templateUrl: 'firebase-imagepicker.html',
 })
-export class FirebaseStoragePage {
+export class FirebaseImagePickerPage {
   mRootDocumentPath: string = "storage/uploads";
   mDirectoryCollectionPath: string = "storage/uploads/categories";
   mFilesCollectionPath: string = "storage/uploads/files";
@@ -106,6 +108,20 @@ export class FirebaseStoragePage {
     });
 
     this.mFolderPaths = this.mCurrentFolder.folder_path.split('/');
+
+    // this.mCurrentFiles = this.mFirebaseFiles.filter(item => {
+    //   return item.folder === this.mCurrentFolder.firebase_reference;
+    // });
+    // this.mCurrentFiles.sort((a, b) => {
+    //   var nameA = a.name.toLowerCase(), nameB = b.name.toLowerCase();
+    //   if (nameA < nameB) //sort string ascending
+    //     return -1;
+    //   if (nameA > nameB)
+    //     return 1;
+    //   return 0;
+    // });
+
+    // this.mCurrentFile = new FirebaseFilePicker();
   }
 
   _ConnectToFirebase() {
@@ -118,6 +134,62 @@ export class FirebaseStoragePage {
         this.onSelectedFolderChanged();
       }
     );
+
+    // this.mFileCollectionRef.valueChanges().subscribe(data => {
+    //   this.mFirebaseFiles = [];
+    //   if (data) {
+    //     data.forEach(firebaseFile => {
+
+    //       let firebaseFilePicker: FirebaseFilePicker = {
+    //         firebase_id: doc.id,
+    //         firebase_reference: data.firebase_reference,
+    //         name: data.name,
+    //         url: data.url,
+    //         folder: "",
+    //         content_type: data.content_type,
+    //         storage_reference: data.storage_reference,
+    //         mSelected: false
+    //       };
+    //     });
+    //   }
+    // });
+
+    // this.mFileCollectionRef.snapshotChanges().subscribe(
+    //   snapshot => {
+
+    //     snapshot.forEach(item => {
+    //       let doc = item.payload.doc;
+    //       if (doc.exists) {
+    //         let data = doc.data();
+    //         let firebaseFile: FirebaseFilePicker = {
+    //           firebase_id: doc.id,
+    //           firebase_reference: data.firebase_reference,
+    //           name: data.name,
+    //           url: data.url,
+    //           folder: "",
+    //           content_type: data.content_type,
+    //           storage_reference: data.storage_reference,
+    //           mSelected: false
+    //         };
+    //         firebaseFile.folder = firebaseFile.firebase_reference.substring(0, firebaseFile.firebase_reference.lastIndexOf('/'));
+
+    //         if (firebaseFile.content_type && firebaseFile.content_type.startsWith('image/')) {
+    //           if (this.images.length > 0) {
+    //             for (let img of this.images) {
+    //               if (img.firebase_id == firebaseFile.firebase_id) {
+    //                 firebaseFile.mSelected = true;
+    //                 break;
+    //               }
+    //             }
+    //           }
+    //         }
+    //         this.mFirebaseFiles.push(firebaseFile);
+    //       }
+    //     });
+    //     this.onSelectedFolderChanged();
+    //   }
+    // );
+
   }
 
   _ShowToast(message: string, duration: number) {
@@ -516,7 +588,8 @@ export class FirebaseStoragePage {
     }
   }
   // =================== Files =====================
-  _ShowFileContextMenu(file: FirebaseFile) {    
+  _ShowFileContextMenu(file: FirebaseFile) {
+    this.mCurrentFile = file;
     let actionSheet = this.mActionSheetController.create({
       title: 'Chọn thao tác',
       buttons: [
